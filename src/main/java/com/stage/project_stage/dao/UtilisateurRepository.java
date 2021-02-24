@@ -16,5 +16,5 @@ public interface UtilisateurRepository extends JpaRepository<Utilisateur,Integer
     @RestResource(path="/byId")
     public Page<Utilisateur> findByIdEquals(@Param("mc") Integer id, org.springframework.data.domain.Pageable pageable);
     @RestResource(path="/by")
-    public Page<Utilisateur> findByPosteContainsAndTypeContainsAndMatriculeContains(@Param("poste") String poste,@Param("type") String type,@Param("matricule") String matricule, org.springframework.data.domain.Pageable pageable);
+    public Page<Utilisateur> findByTypeContainsAndMatriculeContains(@Param("type") String type,@Param("matricule") String matricule, org.springframework.data.domain.Pageable pageable);
 }

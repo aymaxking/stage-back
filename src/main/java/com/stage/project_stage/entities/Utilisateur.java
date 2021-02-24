@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Entity
 @Data
@@ -19,16 +20,25 @@ public class Utilisateur  implements Serializable {
 	private Integer id;
 	private String type;
 	private String login;
-	private String password;
+	private String password=alphaNumericString(6);;
 	private String matricule;
-	private String poste;
-
 	public void copy(Optional<Utilisateur> u){
 		id =u.get().getId();
 		login=u.get().getLogin();
 		matricule=u.get().getMatricule();
 		password=u.get().getPassword();
-		poste=u.get().getPoste();
 		type=u.get().getType();
 	}
+
+	public static String alphaNumericString(int len) {
+		String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		Random rnd = new Random();
+
+		StringBuilder sb = new StringBuilder(len);
+		for (int i = 0; i < len; i++) {
+			sb.append(AB.charAt(rnd.nextInt(AB.length())));
+		}
+		return sb.toString();
+	}
+
 }
